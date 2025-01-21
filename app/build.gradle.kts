@@ -26,6 +26,17 @@ android {
         }
     }
 
+    signingConfigs {
+        signingConfigs {
+            create("release") {
+                keyAlias = System.getenv("KEY_ALIAS")
+                keyPassword = System.getenv("KEY_PASSWORD")
+                storePassword = System.getenv("KEYSTORE_PASSWORD")
+                storeFile = file("${project.rootDir}/release-key.jks")
+            }
+        }
+    }
+
     buildTypes {
         release {
             isMinifyEnabled = false
@@ -74,11 +85,6 @@ dependencies {
     implementation(libs.hilt.android)
     kapt(libs.hilt.android.compiler)
 
-//    // Optional - ViewModel support with Hilt
-//    implementation(libs.androidx.hilt.lifecycle.viewmodel)
-//
-//    // Optional - Integration with Navigation (if using Jetpack Navigation)
-//    implementation(libs.androidx.hilt.navigation.fragment)
     testImplementation(libs.junit)
 
     androidTestImplementation(libs.androidx.junit)
