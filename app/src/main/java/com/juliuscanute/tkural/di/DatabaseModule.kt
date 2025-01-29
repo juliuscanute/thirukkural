@@ -23,6 +23,7 @@ object DatabaseModule {
             ThirukuralDatabase::class.java,
             "kural.sqlite"
         ).createFromAsset("kural.sqlite")
+            .fallbackToDestructiveMigration()
             .build()
     }
 

@@ -1,5 +1,6 @@
 package com.juliuscanute.tkural.ui
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -24,12 +25,14 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
 @Composable
 fun ThirukuralScreen(innerPadding: PaddingValues, viewState: ThirukuralViewState) {
-    var expandedSection by remember { mutableStateOf("Word Meanings") } // Track the expanded section
+    var expandedSection by remember { mutableStateOf<String?>(null) } // Track the expanded section
 
     Column(modifier = Modifier
         .verticalScroll(rememberScrollState())
@@ -41,10 +44,16 @@ fun ThirukuralScreen(innerPadding: PaddingValues, viewState: ThirukuralViewState
         Spacer(modifier = Modifier.height(8.dp))
         Text(text = viewState.verse, style = MaterialTheme.typography.bodyLarge)
         Spacer(modifier = Modifier.height(8.dp))
+        Image(
+            painter = painterResource(id = getDrawableResourceId(viewState.kuralNumber)),
+            contentDescription = "Illustration",
+            modifier = Modifier.fillMaxWidth()
+        )
+        Spacer(modifier = Modifier.height(8.dp))
         CollapsibleSection(
             title = "Word Meanings",
             isExpanded = expandedSection == "Word Meanings",
-            onExpand = { expandedSection = "Word Meanings" }
+            onExpand = { expandedSection = if (expandedSection == "Word Meanings") null else "Word Meanings" }
         ) {
             WordMeaningItem(viewState)
         }
@@ -52,7 +61,7 @@ fun ThirukuralScreen(innerPadding: PaddingValues, viewState: ThirukuralViewState
         CollapsibleSection(
             title = "Detailed Explanation",
             isExpanded = expandedSection == "Explanation",
-            onExpand = { expandedSection = "Explanation" }
+            onExpand = { expandedSection = if (expandedSection == "Explanation") null else "Explanation" }
         ) {
             Column {
                 Text(text = viewState.explanation, style = MaterialTheme.typography.bodyLarge)
@@ -67,7 +76,7 @@ fun ThirukuralScreen(innerPadding: PaddingValues, viewState: ThirukuralViewState
         CollapsibleSection(
             title = "Story",
             isExpanded = expandedSection == "Story",
-            onExpand = { expandedSection = "Story" }
+            onExpand = { expandedSection = if (expandedSection == "Story") null else "Story" }
         ) {
             Column {
                 Text(text = viewState.story.title, style = MaterialTheme.typography.titleSmall)
@@ -86,7 +95,7 @@ fun ThirukuralScreen(innerPadding: PaddingValues, viewState: ThirukuralViewState
         CollapsibleSection(
             title = "Themes",
             isExpanded = expandedSection == "Themes",
-            onExpand = { expandedSection = "Themes" }
+            onExpand = { expandedSection = if (expandedSection == "Themes") null else "Themes" }
         ) {
             Text(
                 text = viewState.theme.joinToString(", "),
@@ -171,4 +180,11 @@ fun PreviewThirukuralScreen() {
         theme = listOf("Divinity", "Creation")
     )
     ThirukuralScreen(innerPadding = PaddingValues(48.dp), viewState = viewState)
+}
+
+@Composable
+fun getDrawableResourceId(kuralNumber: Int): Int {
+    val context = LocalContext.current
+    val resourceName = "kural$kuralNumber"
+    return context.resources.getIdentifier(resourceName, "drawable", context.packageName)
 }
