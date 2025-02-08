@@ -1,13 +1,22 @@
 package com.juliuscanute.tkural.repository
 
 import com.juliuscanute.tkural.data.ThirukuralDao
+import com.juliuscanute.tkural.data.ThirukuralDataStore
+import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
 class ThirukuralRepository @Inject constructor(
-    private val thirukuralDao: ThirukuralDao
+    private val thirukuralDao: ThirukuralDao,
+    private val thirukuralDataStore: ThirukuralDataStore
 ) {
+
+    val kuralNumber: Flow<Int>
+        get() = thirukuralDataStore.getKuralNumber()
+
+    suspend fun saveKuralNumber(kuralNumber: Int) = thirukuralDataStore.saveKuralNumber(kuralNumber)
+
     suspend fun getThirukuralCount() = thirukuralDao.getThirukuralCount()
     suspend fun getThirukuralWithDetails(kuralNo: Int) =
         thirukuralDao.getThirukuralWithDetails(kuralNo)
@@ -36,7 +45,7 @@ class ThirukuralRepository @Inject constructor(
     private suspend fun searchByKuralNumber(query: String): List<KuralSuggestion> {
         val kuralNumber = query.toIntOrNull() ?: return emptyList()
         val kural = thirukuralDao.getThirukuralWithDetails(kuralNumber)
-        return kural?.let {  listOf(KuralSuggestion(kuralNumber, kural.thirukural.verse, null)) }
+        return kural?.let { listOf(KuralSuggestion(kuralNumber, kural.thirukural.verse, null)) }
             ?: emptyList()
     }
 

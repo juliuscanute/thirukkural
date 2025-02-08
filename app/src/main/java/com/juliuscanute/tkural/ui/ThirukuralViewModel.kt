@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.juliuscanute.tkural.repository.ThirukuralRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -20,7 +21,8 @@ class ThirukuralViewModel @Inject constructor(
     init {
         viewModelScope.launch {
             totalCount = kuralRepository.getThirukuralCount()
-            loadKural(1)
+            val kuralNumber = kuralRepository.kuralNumber.first()
+            loadKural(kuralNumber)
         }
     }
 
@@ -30,6 +32,7 @@ class ThirukuralViewModel @Inject constructor(
             kuralWithDetails?.let {
                 kuralViewState.value = kuralViewStateMapper.mapToViewState(kuralWithDetails)
             }
+            kuralRepository.saveKuralNumber(kuralNo)
             updateNavigationState(kuralNo)
         }
     }

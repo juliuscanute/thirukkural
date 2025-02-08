@@ -82,6 +82,8 @@ dependencies {
     implementation(libs.androidx.lifecycle.livedata.ktx)
     implementation(libs.androidx.lifecycle.viewmodel.savedstate)
     implementation(libs.androidx.appcompat)
+    implementation(libs.androidx.datastore.preferences)
+
 
     implementation(libs.hilt.android)
     kapt(libs.hilt.android.compiler)
