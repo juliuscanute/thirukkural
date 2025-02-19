@@ -42,11 +42,11 @@ jobs:
           name: app-release-aab
           path: app/build/outputs/bundle/release/app-release.aab
 
-      # - name: Upload to Google Play
-      #   uses: r0adkll/upload-google-play@v1
-      #   with:
-      #     serviceAccountJson: ${{ secrets.SERVICE_ACCOUNT_JSON }}
-      #     packageName: com.juliuscanute.tkural
-      #     releaseFiles: ./app/build/outputs/bundle/release/app-release.aab
-      #     track: internal
-      #     status: completed
+      - name: Upload to Google Play
+        uses: r0adkll/upload-google-play@v1
+        with:
+          serviceAccountJson: ${{ secrets.SERVICE_ACCOUNT_JSON }}
+          packageName: com.juliuscanute.tkural
+          releaseFiles: ./app/build/outputs/bundle/release/app-release.aab
+          track: internal
+          status: completed
