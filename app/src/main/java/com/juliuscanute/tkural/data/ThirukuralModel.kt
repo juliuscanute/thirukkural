@@ -1,5 +1,6 @@
 package com.juliuscanute.tkural.data
 
+import androidx.room.ColumnInfo
 import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.ForeignKey
@@ -17,7 +18,8 @@ data class Thirukural(
     val explanation: String,
     val story_title: String,
     val story_content: String,
-    val story_moral: String
+    val story_moral: String,
+    val image_path: String?
 )
 
 @Entity(

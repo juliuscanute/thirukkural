@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 2,
-    "identityHash": "cf62a9e20164fe8c47ace74f25cc60b5",
+    "identityHash": "42484f943d496f7291f7b4edd2a4f3aa",
     "entities": [
       {
         "tableName": "thirukural",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER, `kural_number` INTEGER NOT NULL, `verse` TEXT NOT NULL, `combined_explanation` TEXT NOT NULL, `explanation` TEXT NOT NULL, `story_title` TEXT NOT NULL, `story_content` TEXT NOT NULL, `story_moral` TEXT NOT NULL, PRIMARY KEY(`id`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER, `kural_number` INTEGER NOT NULL, `verse` TEXT NOT NULL, `combined_explanation` TEXT NOT NULL, `explanation` TEXT NOT NULL, `story_title` TEXT NOT NULL, `story_content` TEXT NOT NULL, `story_moral` TEXT NOT NULL, `image_path` TEXT, PRIMARY KEY(`id`))",
         "fields": [
           {
             "fieldPath": "id",
@@ -55,6 +55,12 @@
             "columnName": "story_moral",
             "affinity": "TEXT",
             "notNull": true
+          },
+          {
+            "fieldPath": "image_path",
+            "columnName": "image_path",
+            "affinity": "TEXT",
+            "notNull": false
           }
         ],
         "primaryKey": {
@@ -176,7 +182,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'cf62a9e20164fe8c47ace74f25cc60b5')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '42484f943d496f7291f7b4edd2a4f3aa')"
     ]
   }
 }
