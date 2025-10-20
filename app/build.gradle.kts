@@ -8,12 +8,12 @@ plugins {
 
 android {
     namespace = "com.juliuscanute.tkural"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.juliuscanute.tkural"
         minSdk = 24
-        targetSdk = 34
+        targetSdk = 35
         versionCode = System.getenv("BUILD_NUMBER")?.toInt() ?: 1
         versionName = "1.0"
 
