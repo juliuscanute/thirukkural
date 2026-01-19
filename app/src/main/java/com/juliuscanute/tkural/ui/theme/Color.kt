@@ -2,21 +2,26 @@ package com.juliuscanute.tkural.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
-// Primary Colors
-val Purple80 = Color(0xFFD0BCFF)
-val PurpleGrey80 = Color(0xFFCCC2DC)
-val Pink80 = Color(0xFFEFB8C8)
+// Light Mode Colors
+val Terracotta = Color(0xFFC04F15)
+val Gold = Color(0xFFD6A628)
+val Olive = Color(0xFF6B705C)
+val Parchment = Color(0xFFFBF7F0)
+val WarmWhite = Color(0xFFFFFBFA)
+val DeepCharcoal = Color(0xFF2D2D2A)
 
-val Purple40 = Color(0xFF6650a4)
-val PurpleGrey40 = Color(0xFF625b71)
-val Pink40 = Color(0xFF7D5260)
+// Dark Mode Colors
+val MutedTerra = Color(0xFFE57A44)
+val MutedGold = Color(0xFFEBC96C)
+val MutedOlive = Color(0xFFA5A993)
+val DarkEarth = Color(0xFF1F1D1B)
+val DarkSurface = Color(0xFF2A2826)
+val SoftWhite = Color(0xFFEAE0D5)
 
-// Additional Colors
-val Blue80 = Color(0xFF80D8FF)
-val Blue40 = Color(0xFF0077C2)
-val Green80 = Color(0xFFB9FBC0)
-val Green40 = Color(0xFF388E3C)
-val Yellow80 = Color(0xFFFFF59D)
-val Yellow40 = Color(0xFFFBC02D)
-val Red80 = Color(0xFFFF8A80)
-val Red40 = Color(0xFFD32F2F)
+val Purple80 = MutedTerra
+val PurpleGrey80 = MutedGold
+val Pink80 = MutedOlive
+
+val Purple40 = Terracotta
+val PurpleGrey40 = Gold
+val Pink40 = Olive
